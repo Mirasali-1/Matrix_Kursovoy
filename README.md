@@ -94,7 +94,7 @@
 
 1. **Клонирование репозитория**
    ```bash
-   git clone https://github.com/vladislavboev2007/Matrix_app.git
+   git clone https://github.com/Mirasali-1/Matrix_Kursovoy.git
    cd Matrix_app
    ```
 
