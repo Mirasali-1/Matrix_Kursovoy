@@ -1,0 +1,424 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict 6QrUgfACaoSy3ZusjmnFlyKZFZ0FgFv0CIQA63LTHgO0wbHF5fS4SgaC6Q2I1cH
+
+-- Dumped from database version 18.1
+-- Dumped by pg_dump version 18.1
+
+-- Started on 2026-04-14 22:17:21
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 219 (class 1259 OID 115271)
+-- Name: ctrl_works; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ctrl_works (
+    id integer NOT NULL,
+    title character varying(200) NOT NULL,
+    "desc" character varying(500) NOT NULL,
+    grade character varying(10) NOT NULL,
+    qcount integer NOT NULL,
+    "time" integer NOT NULL,
+    topics text NOT NULL,
+    topic_keys text NOT NULL,
+    topic_counts text NOT NULL,
+    active boolean NOT NULL,
+    created_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.ctrl_works OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 115287)
+-- Name: ctrl_works_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.ctrl_works_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.ctrl_works_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4952 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: ctrl_works_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.ctrl_works_id_seq OWNED BY public.ctrl_works.id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 115288)
+-- Name: custom_tests; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.custom_tests (
+    id integer NOT NULL,
+    title character varying(200) NOT NULL,
+    "desc" character varying(500) NOT NULL,
+    difficulty character varying(20) NOT NULL,
+    diff_label character varying(20) NOT NULL,
+    questions integer NOT NULL,
+    "time" integer NOT NULL,
+    topics text NOT NULL,
+    topic_keys text NOT NULL,
+    topic_counts text NOT NULL,
+    created_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.custom_tests OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 115304)
+-- Name: custom_tests_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.custom_tests_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.custom_tests_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4953 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: custom_tests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.custom_tests_id_seq OWNED BY public.custom_tests.id;
+
+
+--
+-- TOC entry 223 (class 1259 OID 115305)
+-- Name: test_results; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.test_results (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    test_id integer NOT NULL,
+    test_title character varying(200) NOT NULL,
+    total_questions integer NOT NULL,
+    correct_answers integer NOT NULL,
+    percentage integer NOT NULL,
+    time_spent integer NOT NULL,
+    detailed_results text NOT NULL,
+    "timestamp" timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.test_results OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 115320)
+-- Name: test_results_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.test_results_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.test_results_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4954 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: test_results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.test_results_id_seq OWNED BY public.test_results.id;
+
+
+--
+-- TOC entry 225 (class 1259 OID 115321)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    first_name character varying(100) NOT NULL,
+    last_name character varying(100) NOT NULL,
+    grade character varying(10) NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 226 (class 1259 OID 115329)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4955 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- TOC entry 4770 (class 2604 OID 115330)
+-- Name: ctrl_works id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ctrl_works ALTER COLUMN id SET DEFAULT nextval('public.ctrl_works_id_seq'::regclass);
+
+
+--
+-- TOC entry 4772 (class 2604 OID 115331)
+-- Name: custom_tests id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.custom_tests ALTER COLUMN id SET DEFAULT nextval('public.custom_tests_id_seq'::regclass);
+
+
+--
+-- TOC entry 4774 (class 2604 OID 115332)
+-- Name: test_results id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.test_results ALTER COLUMN id SET DEFAULT nextval('public.test_results_id_seq'::regclass);
+
+
+--
+-- TOC entry 4776 (class 2604 OID 115333)
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- TOC entry 4939 (class 0 OID 115271)
+-- Dependencies: 219
+-- Data for Name: ctrl_works; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ctrl_works (id, title, "desc", grade, qcount, "time", topics, topic_keys, topic_counts, active, created_at) FROM stdin;
+1	Контрольная №1 — Базовые операции	Сложение, умножение на скаляр, транспонирование и определители 2×2		12	40	["add", "add", "add", "scalar", "scalar", "scalar", "transpose", "transpose", "det2", "det2", "det2", "det2"]	["add", "scalar", "transpose", "det2"]	{"add": 3, "scalar": 3, "transpose": 2, "det2": 4}	t	2026-04-12 20:34:05.106131
+2	Контрольная №2 — Продвинутый уровень	Умножение матриц, определители 3×3, обратная матрица и системы уравнений		14	55	["multiply", "multiply", "multiply", "det3", "det3", "det3", "det3", "inverse", "inverse", "inverse", "sle", "sle", "rank", "rank"]	["multiply", "det3", "inverse", "sle", "rank"]	{"multiply": 3, "det3": 4, "inverse": 3, "sle": 2, "rank": 2}	t	2026-04-12 20:34:05.106131
+\.
+
+
+--
+-- TOC entry 4941 (class 0 OID 115288)
+-- Dependencies: 221
+-- Data for Name: custom_tests; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.custom_tests (id, title, "desc", difficulty, diff_label, questions, "time", topics, topic_keys, topic_counts, created_at) FROM stdin;
+1	test	1	hard	Сложный	7	15	["add","add","scalar","scalar","multiply","multiply","det3"]	["add","scalar","multiply","det3"]	{"add":2,"scalar":2,"multiply":2,"det3":1}	2026-04-12 20:34:44.052549
+\.
+
+
+--
+-- TOC entry 4943 (class 0 OID 115305)
+-- Dependencies: 223
+-- Data for Name: test_results; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.test_results (id, user_id, test_id, test_title, total_questions, correct_answers, percentage, time_spent, detailed_results, "timestamp") FROM stdin;
+1	2	1	Тест 1 — Лёгкий	5	3	60	147	[{"question":"Найдите сумму матриц:\\nA = [[3, 5], [0, -2]], B = [[2, 0], [-3, 2]]","user_answer":"[[5, 5], [-3, 0]]","correct_answer":"[[5, 5], [-3, 0]]","is_correct":true},{"question":"Умножьте матрицу на скаляр k = 2:\\nA = [[2, -1], [-2, -3]]","user_answer":"[[4, -2], [-4, -6]]","correct_answer":"[[4, -2], [-4, -6]]","is_correct":true},{"question":"Вычислите A^T:\\nA = [[4, 4], [-1, 4]]","user_answer":"[[4, -1], [0, -4]]","correct_answer":"[[4, -1], [4, 4]]","is_correct":false},{"question":"Вычислите A + B:\\nA = [[1, 1], [2, -3]], B = [[5, 0], [0, 0]]","user_answer":"[[-6, 9], [6, 7]]","correct_answer":"[[6, 1], [2, -3]]","is_correct":false},{"question":"Определите размер матрицы:\\nA = [[1, 1, 2], [6, 2, -4], [1, 3, 4], [3, 1, -2]]","user_answer":"4×3","correct_answer":"4×3","is_correct":true}]	2026-03-22 21:16:07.909041
+2	4	1	Тест 1 — Лёгкий	5	0	0	4	[{"question":"Найдите сумму матриц:\\nA = [[3, -3], [-2, 4]], B = [[2, -1], [4, 5]]","user_answer":"[[-5, -7], [-8, -3]]","correct_answer":"[[5, -4], [2, 9]]","is_correct":false},{"question":"Умножьте матрицу на скаляр k = 4:\\nA = [[1, -4], [-3, 6]]","user_answer":"[[21, -12], [-5, -11]]","correct_answer":"[[4, -16], [-12, 24]]","is_correct":false},{"question":"Вычислите A^T:\\nA = [[5, 6], [4, 3]]","user_answer":"[[2, 6], [0, -2]]","correct_answer":"[[5, 4], [6, 3]]","is_correct":false},{"question":"Вычислите A + B:\\nA = [[5, -1], [-1, -3]], B = [[-3, 0], [5, 0]]","user_answer":"[[-4, 3], [7, 8]]","correct_answer":"[[2, -1], [4, -3]]","is_correct":false},{"question":"Определите размер матрицы:\\nA = [[6, 0, 1, 0], [4, -1, 2, 3]]","user_answer":"2×3","correct_answer":"2×4","is_correct":false}]	2026-03-22 21:20:19.300683
+3	5	1	Тест 1 — Лёгкий	5	3	60	4	[{"question":"Найдите сумму матриц:\\nA = [[-1, 3], [-3, 6]], B = [[-3, 0], [-1, -1]]","user_answer":"[[-4, 3], [-4, 5]]","correct_answer":"[[-4, 3], [-4, 5]]","is_correct":true},{"question":"Умножьте матрицу на скаляр k = 4:\\nA = [[-2, -1], [5, 1]]","user_answer":"[[-1, 26], [7, -17]]","correct_answer":"[[-8, -4], [20, 4]]","is_correct":false},{"question":"Вычислите A^T:\\nA = [[3, 0], [-3, 5]]","user_answer":"[[-3, 5], [1, -1]]","correct_answer":"[[3, -3], [0, 5]]","is_correct":false},{"question":"Вычислите A + B:\\nA = [[1, 2], [1, 3]], B = [[5, 3], [5, 4]]","user_answer":"[[6, 5], [6, 7]]","correct_answer":"[[6, 5], [6, 7]]","is_correct":true},{"question":"Определите размер матрицы:\\nA = [[3, -4, 1], [-2, 6, -4], [2, 0, 1], [-1, 0, 5]]","user_answer":"4×3","correct_answer":"4×3","is_correct":true}]	2026-03-22 21:23:41.1807
+4	3	3	Тест 3 — Определители	5	0	0	9	[{"question":"Определитель 2×2:\\n[[4, -1], [1, 2]]","user_answer":"7","correct_answer":"9","is_correct":false},{"question":"Определитель 2×2:\\n[[7, 5], [2, 1]]","user_answer":"3","correct_answer":"-3","is_correct":false},{"question":"Вычислите определитель матрицы 2×2","user_answer":"2","correct_answer":"-28","is_correct":false},{"question":"Вычислите 4 · A. Найдите элемент b12 результата.","user_answer":"3","correct_answer":"-8","is_correct":false},{"question":"Вычислите определитель матрицы 2×2","user_answer":"1","correct_answer":"-48","is_correct":false}]	2026-04-06 19:53:09.426005
+5	7	1	Контрольная №1 — Базовые операции	12	3	25	15	[{"question":"Вычислите Aᵀ:\\nA = [[-4, 1], [5, 1]]","user_answer":"[[2, -4], [4, 4]]","correct_answer":"[[-4, 5], [1, 1]]","is_correct":false},{"question":"Вычислите определитель матрицы 2×2","user_answer":"3","correct_answer":"0","is_correct":false},{"question":"Верно ли, что A + B = C?","user_answer":"true","correct_answer":"false","is_correct":false},{"question":"Определитель 2×2:\\n[[-2, 0], [-1, -4]]","user_answer":"13","correct_answer":"8","is_correct":false},{"question":"Верно ли, что A + B = C?","user_answer":"true","correct_answer":"true","is_correct":true},{"question":"Вычислите 6 · A. Найдите элемент b22 результата.","user_answer":"6","correct_answer":"-12","is_correct":false},{"question":"Определитель 2×2:\\n[[4, 6], [5, -1]]","user_answer":"26","correct_answer":"-34","is_correct":false},{"question":"Верно ли, что det(A) = 29?","user_answer":"true","correct_answer":"true","is_correct":true},{"question":"Верно ли, что A + B = C?","user_answer":"true","correct_answer":"false","is_correct":false},{"question":"Вычислите 2 · A. Найдите элемент b21 результата.","user_answer":"2","correct_answer":"4","is_correct":false},{"question":"Умножьте на скаляр k = 4:\\nA = [[-2, -4], [3, 5]]","user_answer":"[[-10, -20], [15, 25]]","correct_answer":"[[-8, -16], [12, 20]]","is_correct":false},{"question":"Вычислите Aᵀ:\\nA = [[5, 2], [-4, -2]]","user_answer":"[[5, -4], [2, -2]]","correct_answer":"[[5, -4], [2, -2]]","is_correct":true}]	2026-04-14 22:12:44.267884
+\.
+
+
+--
+-- TOC entry 4945 (class 0 OID 115321)
+-- Dependencies: 225
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, first_name, last_name, grade, created_at) FROM stdin;
+1	Матвей	Колпаков	9	2026-03-22 21:11:28.981748
+2	Матвей	Колпаков	11	2026-03-22 21:13:34.624554
+3	Матвей	Колпаков	10	2026-03-22 21:19:55.027113
+4	Матвей	Колпаков	9	2026-03-22 21:20:03.102592
+5	Матвей	Колпаков	9	2026-03-22 21:23:34.600847
+6	Матвей	Сологуб	10	2026-04-06 19:52:25.553011
+7	Владислав	Боев	9	2026-04-14 22:12:17.671113
+\.
+
+
+--
+-- TOC entry 4956 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: ctrl_works_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.ctrl_works_id_seq', 2, true);
+
+
+--
+-- TOC entry 4957 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: custom_tests_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.custom_tests_id_seq', 1, true);
+
+
+--
+-- TOC entry 4958 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: test_results_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.test_results_id_seq', 5, true);
+
+
+--
+-- TOC entry 4959 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 7, true);
+
+
+--
+-- TOC entry 4779 (class 2606 OID 115335)
+-- Name: ctrl_works ctrl_works_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ctrl_works
+    ADD CONSTRAINT ctrl_works_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4782 (class 2606 OID 115337)
+-- Name: custom_tests custom_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.custom_tests
+    ADD CONSTRAINT custom_tests_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4787 (class 2606 OID 115339)
+-- Name: test_results test_results_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.test_results
+    ADD CONSTRAINT test_results_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4790 (class 2606 OID 115341)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4784 (class 1259 OID 115342)
+-- Name: idx_test_date; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_test_date ON public.test_results USING btree ("timestamp");
+
+
+--
+-- TOC entry 4788 (class 1259 OID 115343)
+-- Name: idx_user_grade; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_user_grade ON public.users USING btree (grade);
+
+
+--
+-- TOC entry 4785 (class 1259 OID 115344)
+-- Name: idx_user_results; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_user_results ON public.test_results USING btree (user_id);
+
+
+--
+-- TOC entry 4780 (class 1259 OID 115345)
+-- Name: ix_ctrl_works_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX ix_ctrl_works_id ON public.ctrl_works USING btree (id);
+
+
+--
+-- TOC entry 4783 (class 1259 OID 115346)
+-- Name: ix_custom_tests_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX ix_custom_tests_id ON public.custom_tests USING btree (id);
+
+
+--
+-- TOC entry 4791 (class 2606 OID 115347)
+-- Name: test_results test_results_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.test_results
+    ADD CONSTRAINT test_results_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+-- Completed on 2026-04-14 22:17:22
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict 6QrUgfACaoSy3ZusjmnFlyKZFZ0FgFv0CIQA63LTHgO0wbHF5fS4SgaC6Q2I1cH
+
