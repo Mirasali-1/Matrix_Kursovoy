@@ -3,7 +3,6 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green.svg)](https://fastapi.tiangolo.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg)](https://www.postgresql.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **MatriX** — это интерактивное веб-приложение-тренажер для изучения и отработки навыков работы с матрицами. Разработано для учащихся 9–11 классов, студентов и всех, кто готовится к экзаменам (ОГЭ, ЕГЭ, вступительные испытания).
 
@@ -144,12 +143,6 @@
 ## 📁 Структура проекта
 
 <img width="242" height="410" alt="image" src="https://github.com/user-attachments/assets/7ab982b9-42ef-434a-80d5-92d9e492745a" />
-
----
-
-## 📄 Лицензия
-
-MIT License
 
 ---
 
