@@ -1,0 +1,85 @@
+<mxfile host="Electron">
+  <diagram name="Страница-1" id="_iHjLL_m0EZpX3x3miKN">
+    <mxGraphModel dx="2113" dy="1404" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="A8l2bEGepr8XyAej_kep-17" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-18" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-20" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-26" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-27" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-28" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-29" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-30" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Matrix" vertex="1">
+          <mxGeometry height="60" width="120" x="40" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Регистрация и вход" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Выбор темы и теста с учетом класса" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-21" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-22" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-23" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-24" edge="1" parent="1" source="A8l2bEGepr8XyAej_kep-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;defaultLabelBackgroundColor=gap;" target="A8l2bEGepr8XyAej_kep-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Прохождение тестирования" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Сохранение результатов и ведение истории попыток" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Формирование отчета с разбором ошибок" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Изучение теоретического материала" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Создание и управление тестами и контрольными работами" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Администрирование сервера и базы данных" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="1200" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Выбор формата и уровня сложности" vertex="1">
+          <mxGeometry height="60" width="120" x="280" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ответы на вопросы с таймером" vertex="1">
+          <mxGeometry height="60" width="120" x="280" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Навигация между вопросами" vertex="1">
+          <mxGeometry height="60" width="120" x="280" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="A8l2bEGepr8XyAej_kep-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Завершение теста" vertex="1">
+          <mxGeometry height="60" width="120" x="280" y="805" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
