@@ -130,6 +130,10 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--g100);color:var(--b
 .qty-btn:hover{border-color:var(--black);}
 .qty-btn.sel{background:var(--black);color:var(--white);border-color:var(--black);}
 
+
+.btn-review-theory{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:9px 13px;border:2px solid var(--black);border-radius:var(--r);background:var(--white);color:var(--black);font:600 12px 'Space Grotesk',sans-serif;cursor:pointer;transition:background .15s,color .15s,transform .15s;}
+.btn-review-theory:hover{background:var(--black);color:var(--white);transform:translateY(-1px);}
+
 /* ── HISTORY ── */
 .history-empty{text-align:center;padding:60px 20px;color:var(--g400);font-size:15px;}
 .hcard{background:var(--white);border:2px solid var(--black);border-radius:var(--rlg);padding:16px 20px;margin-bottom:12px;box-shadow:3px 3px 0 var(--black);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
@@ -410,6 +414,47 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--g100);color:var(--b
 .ctrl-work-card-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
 .ctrl-work-card-topics{font-size:12px;color:var(--g600);background:var(--g100);border-radius:var(--r);padding:8px 12px;margin-bottom:14px;line-height:1.7;}
 .ctrl-work-card-actions{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* ADMIN STUDENT HISTORY */
+.admin-history-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0 20px;}
+.admin-export-tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:12px 0 18px;}
+.admin-export-tools span{font-size:12px;font-weight:700;color:var(--g600);margin-right:3px;}
+.admin-student-export-tools{margin:0 0 16px;}
+.admin-history-search{flex:1;min-width:220px;border:2px solid var(--black);border-radius:var(--r);padding:11px 13px;font:inherit;background:var(--white);}
+.admin-history-summary{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 20px;}
+.admin-stat{background:var(--white);border:2px solid var(--black);border-radius:var(--r);padding:12px 16px;min-width:130px;box-shadow:3px 3px 0 var(--black);}
+.admin-stat strong{display:block;font-size:23px;line-height:1.2;}
+.admin-stat span{font-size:11px;color:var(--g400);}
+.admin-student-card{background:var(--white);border:2px solid var(--black);border-radius:var(--rlg);padding:16px 18px;margin-bottom:11px;box-shadow:3px 3px 0 var(--black);display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;transition:transform .12s,box-shadow .12s;}
+.admin-student-card:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--black);}
+.admin-student-name{font-size:15px;font-weight:700;}
+.admin-student-meta{font-size:12px;color:var(--g400);margin-top:4px;}
+.admin-student-count{font-size:12px;font-weight:700;border:1px solid var(--g200);border-radius:20px;padding:6px 10px;white-space:nowrap;}
+.admin-back{background:var(--white);border:2px solid var(--black);border-radius:var(--r);padding:9px 13px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;margin:4px 0 18px;}
+.admin-back:hover{background:var(--g100);}
+.admin-student-head{background:var(--black);color:var(--white);border-radius:var(--rlg);padding:18px 20px;margin-bottom:18px;}
+.admin-student-head strong{font-size:18px;display:block;}
+.admin-student-head span{font-size:12px;opacity:.7;}
+.admin-history-empty{text-align:center;padding:36px 18px;color:var(--g400);border:2px dashed var(--g200);border-radius:var(--rlg);}
+@media(max-width:600px){.admin-student-card{align-items:flex-start}.admin-student-count{white-space:normal;text-align:center}.admin-stat{flex:1;min-width:100px}}
+
+
+/* ── MATRiX MASCOT: global widget + wall peek ── */
+.mascot-widget{position:fixed;right:14px;bottom:12px;z-index:900;display:flex;align-items:flex-end;gap:8px;width:auto;max-width:min(340px,calc(100vw - 20px));pointer-events:none;transition:right .35s ease}
+.mascot-character{width:112px;height:130px;flex:0 0 112px;border:0;background:transparent;box-shadow:none;padding:0;position:relative;cursor:pointer;pointer-events:auto;display:flex;align-items:flex-end;justify-content:center;transition:transform .28s ease;z-index:1}
+.mascot-character img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none;filter:drop-shadow(0 2px 1px rgba(0,0,0,.12));animation:mascotIdleBob 2.4s ease-in-out infinite}
+.mascot-widget.main-peek .mascot-character{transform:translateX(88px)}.mascot-widget.main-peek:not(:hover):not(.intro) .mascot-character img{animation:none!important;}
+.mascot-widget.main-peek:hover .mascot-character,.mascot-widget.main-peek.intro .mascot-character{transform:translateX(0)}.mascot-widget.main-peek.clicked-static .mascot-character{transform:translateX(88px)!important}.mascot-widget.main-peek.clicked-static::after{opacity:1!important}.mascot-widget.main-peek.clicked-static .mascot-character img{animation:none!important}
+.mascot-widget.main-peek::after{content:"";position:absolute;right:-2px;bottom:0;width:13px;height:100%;background:#171717;border-radius:7px 0 0 7px;box-shadow:-3px 0 0 rgba(0,0,0,.12);pointer-events:none;z-index:2}
+.mascot-widget.main-peek:hover::after,.mascot-widget.main-peek.intro::after{opacity:0}
+.mascot-widget:not(.main-peek)::after{display:none}
+.mascot-bubble{background:#fff;border:2px solid #0a0a0a;border-radius:16px 16px 4px 16px;padding:11px 13px;box-shadow:3px 3px 0 #0a0a0a;font-size:12px;line-height:1.45;max-width:220px;min-width:145px;pointer-events:auto;opacity:0;transform:translateY(8px) scale(.96);transform-origin:bottom right;transition:opacity .2s,transform .2s;display:none;margin-bottom:8px}
+.mascot-widget.open .mascot-bubble,.mascot-widget.message .mascot-bubble{display:block;opacity:1;transform:translateY(0) scale(1)}
+.mascot-bubble strong{display:block;font-size:12px;margin-bottom:3px}
+.mascot-bubble button{margin-top:7px;border:0;background:#0a0a0a;color:#fff;border-radius:8px;padding:6px 10px;font:600 11px 'Space Grotesk',sans-serif;cursor:pointer}
+.mascot-widget:not(.hint-available) .mascot-bubble button{display:none}
+@keyframes mascotIdleBob{0%,100%{translate:0 0}50%{translate:0 -4px}}
+@media(max-width:600px){.mascot-widget{bottom:8px;right:8px}.mascot-character{width:88px;height:108px;flex-basis:88px}.mascot-widget.main-peek .mascot-character{transform:translateX(70px)}.mascot-bubble{max-width:180px;min-width:125px}}
 </style>
 </head>
 <body>
@@ -543,227 +588,327 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--g100);color:var(--b
         </div>
         <div class="theory-body" id="theory-body">
 
-          <div class="theory-section" id="t-matrix">
-            <h2>1. Что такое матрица</h2>
-            <p>Матрица — это прямоугольная таблица чисел, расположенных в строках и столбцах. Матрица размера m×n имеет m строк и n столбцов.</p>
-            <div class="theory-box">A = | 1  2  3 |
+  <div class="theory-section" id="t-matrix">
+    <h2>1. Что такое матрица</h2>
+    <p><b>Матрица</b> — это прямоугольная таблица элементов, чаще всего чисел, расположенных по строкам и столбцам. Матрицы используют для записи и решения систем уравнений, преобразования данных и описания линейных зависимостей.</p>
+    <div class="theory-box">A = | 1  2  3 |
     | 4  5  6 |</div>
-            <p>Это матрица размера <b>2×3</b> (2 строки, 3 столбца). Элемент на пересечении i-й строки и j-го столбца обозначается a<sub>ij</sub>.</p>
-            <h3>Виды матриц</h3>
-            <ul>
-              <li><b>Квадратная</b> — число строк равно числу столбцов (n×n)</li>
-              <li><b>Прямоугольная</b> — m×n, где m ≠ n</li>
-              <li><b>Нулевая</b> — все элементы равны нулю</li>
-              <li><b>Единичная (E)</b> — на главной диагонали 1, остальные 0</li>
-            </ul>
-            <div class="theory-box">E = | 1  0 |    E = | 1  0  0 |
-    | 0  1 |        | 0  1  0 |
-                    | 0  0  1 |</div>
-            <div class="theory-note"><b>Запомни:</b> Размер матрицы всегда записывается как «строки × столбцы».</div>
-          </div>
+    <p>У этой матрицы <b>2 строки</b> и <b>3 столбца</b>, поэтому её размер — 2×3. Размер всегда записывают в порядке «строки × столбцы».</p>
+    <h3>Обозначение элементов</h3>
+    <p>Элемент матрицы обозначают <b>a<sub>ij</sub></b>, где i — номер строки, а j — номер столбца. Например, a<sub>23</sub> — элемент второй строки и третьего столбца. В приведённой матрице a<sub>23</sub> = 6.</p>
+    <div class="theory-box">A = (aᵢⱼ),  i = 1…m,  j = 1…n
+m — количество строк; n — количество столбцов</div>
+    <h3>Основные виды матриц</h3>
+    <ul>
+      <li><b>Прямоугольная</b> — количество строк и столбцов различается, m ≠ n.</li>
+      <li><b>Квадратная</b> — количество строк равно количеству столбцов, n×n.</li>
+      <li><b>Нулевая</b> — каждый элемент равен нулю.</li>
+      <li><b>Диагональная</b> — квадратная матрица, у которой все элементы вне главной диагонали равны нулю.</li>
+      <li><b>Единичная E</b> — на главной диагонали стоят единицы, остальные элементы равны нулю.</li>
+    </ul>
+    <div class="theory-box">Нулевая:       Единичная E:
+| 0  0 |       | 1  0 |
+| 0  0 |       | 0  1 |</div>
+    <h3>Как определить размер</h3>
+    <p>Посчитайте строки, затем столбцы. Например, в таблице из трёх строк и двух столбцов размер будет 3×2, а не 2×3.</p>
+    <div class="theory-note"><b>Запомни:</b> первый индекс элемента указывает строку, второй — столбец. Не путайте порядок записи размера матрицы.</div>
+  </div>
 
-          <div class="theory-section" id="t-add">
-            <h2>2. Сложение матриц</h2>
-            <p>Складывать можно только матрицы <b>одинакового размера</b>. Сложение выполняется поэлементно.</p>
-            <div class="theory-box formula">C = A + B,  где  c<sub>ij</sub> = a<sub>ij</sub> + b<sub>ij</sub></div>
-            <h3>Пример</h3>
-            <div class="theory-box">A = | 1  2 |    B = | 5  6 |    A+B = | 6   8 |
-    | 3  4 |        | 7  8 |           | 10  12|</div>
-            <h3>Свойства</h3>
-            <ul>
-              <li>Переместительность: A + B = B + A</li>
-              <li>Сочетательность: (A + B) + C = A + (B + C)</li>
-              <li>A + 0 = A (нулевая матрица — нейтральный элемент)</li>
-            </ul>
-            <div class="theory-note"><b>Ошибка:</b> Нельзя складывать матрицы разных размеров — операция не определена.</div>
-          </div>
-
-          <div class="theory-section" id="t-scalar">
-            <h2>3. Умножение матрицы на скаляр</h2>
-            <p>Скаляр — это обычное число. При умножении матрицы на скаляр k каждый элемент умножается на k.</p>
-            <div class="theory-box formula">B = k · A,  где  b<sub>ij</sub> = k · a<sub>ij</sub></div>
-            <h3>Пример</h3>
-            <div class="theory-box">A = | 1  2 |    3·A = | 3   6 |
-    | 3  4 |           | 9  12 |</div>
-            <h3>Свойства</h3>
-            <ul>
-              <li>k·(A + B) = k·A + k·B</li>
-              <li>(k + m)·A = k·A + m·A</li>
-              <li>1·A = A,  0·A = 0</li>
-            </ul>
-          </div>
-
-          <div class="theory-section" id="t-mul">
-            <h2>4. Умножение матриц</h2>
-            <p>Произведение A·B определено только если <b>число столбцов A равно числу строк B</b>. Если A имеет размер m×k, а B — k×n, то C = A·B имеет размер m×n.</p>
-            <div class="theory-box formula">c<sub>ij</sub> = сумма(a<sub>ik</sub> · b<sub>kj</sub>) по всем k</div>
-            <h3>Пример (2×2)</h3>
-            <div class="theory-box">A = | 1  2 |    B = | 5  6 |
+  <div class="theory-section" id="t-add">
+    <h2>2. Сложение матриц</h2>
+    <p>Сложение матриц выполняется <b>поэлементно</b>: к каждому элементу первой матрицы прибавляют элемент второй матрицы, стоящий на той же позиции.</p>
+    <div class="theory-box formula">C = A + B,   c<sub>ij</sub> = a<sub>ij</sub> + b<sub>ij</sub></div>
+    <h3>Когда сложение возможно</h3>
+    <p>Матрицы A и B должны иметь <b>одинаковый размер</b>. Например, матрицу 2×3 можно сложить с матрицей 2×3, но нельзя сложить с матрицей 3×2.</p>
+    <h3>Разобранный пример</h3>
+    <div class="theory-box">A = | 1  2 |    B = | 5  6 |
     | 3  4 |        | 7  8 |
 
-C = A·B:
-c₁₁ = 1·5 + 2·7 = 19    c₁₂ = 1·6 + 2·8 = 22
-c₂₁ = 3·5 + 4·7 = 43    c₂₂ = 3·6 + 4·8 = 50
+Складываем элементы на одинаковых местах:
+c₁₁ = 1 + 5 = 6
+c₁₂ = 2 + 6 = 8
+c₂₁ = 3 + 7 = 10
+c₂₂ = 4 + 8 = 12
 
-C = | 19  22 |
-    | 43  50 |</div>
-            <div class="theory-note"><b>Важно:</b> A·B ≠ B·A — умножение матриц <b>не переместительно</b>!</div>
-          </div>
+A + B = | 6   8 |
+        | 10 12 |</div>
+    <h3>Свойства сложения</h3>
+    <ul>
+      <li><b>Переместительное:</b> A + B = B + A.</li>
+      <li><b>Сочетательное:</b> (A + B) + C = A + (B + C).</li>
+      <li><b>Нулевая матрица:</b> A + 0 = A.</li>
+      <li><b>Противоположная матрица:</b> A + (−A) = 0.</li>
+    </ul>
+    <h3>Вычитание матриц</h3>
+    <p>Вычитание также выполняется поэлементно и требует одинакового размера матриц: (A − B)<sub>ij</sub> = a<sub>ij</sub> − b<sub>ij</sub>. Его можно представить как сложение с противоположной матрицей: A − B = A + (−B).</p>
+    <div class="theory-note"><b>Типичная ошибка:</b> нельзя складывать элементы по диагонали или просто складывать матрицы разных размеров. Всегда сопоставляйте позиции (i, j).</div>
+  </div>
 
-          <div class="theory-section" id="t-transpose">
-            <h2>5. Транспонирование</h2>
-            <p>Транспонированная матрица Aᵀ получается заменой строк на столбцы: строки исходной матрицы становятся столбцами транспонированной.</p>
-            <div class="theory-box formula">(Aᵀ)<sub>ij</sub> = A<sub>ji</sub></div>
-            <h3>Пример</h3>
-            <div class="theory-box">A = | 1  2  3 |    Aᵀ = | 1  4 |
-    | 4  5  6 |          | 2  5 |
-                          | 3  6 |</div>
-            <p>Матрица 2×3 стала матрицей 3×2.</p>
-            <h3>Свойства</h3>
-            <ul>
-              <li>(Aᵀ)ᵀ = A</li>
-              <li>(A + B)ᵀ = Aᵀ + Bᵀ</li>
-              <li>(A·B)ᵀ = Bᵀ·Aᵀ</li>
-              <li>(k·A)ᵀ = k·Aᵀ</li>
-            </ul>
-          </div>
+  <div class="theory-section" id="t-scalar">
+    <h2>3. Умножение матрицы на скаляр</h2>
+    <p><b>Скаляр</b> — это обычное число. Чтобы умножить матрицу на число k, нужно умножить на k каждый элемент матрицы. Размер матрицы при этом не меняется.</p>
+    <div class="theory-box formula">B = k · A,   b<sub>ij</sub> = k · a<sub>ij</sub></div>
+    <h3>Разобранный пример</h3>
+    <div class="theory-box">A = | 1   2 |       3A = | 3   6 |
+    | −3  4 |            | −9 12 |
 
-          <div class="theory-section" id="t-det">
-            <h2>6. Определитель матрицы</h2>
-            <p>Определитель — число, характеризующее квадратную матрицу. Обозначается det(A) или |A|.</p>
-            <h3>Определитель 2×2</h3>
-            <div class="theory-box">A = | a  b |    det(A) = a·d - b·c
+Пошагово:
+1·3 = 3;  2·3 = 6
+(−3)·3 = −9;  4·3 = 12</div>
+    <p>Каждый элемент умножается отдельно. Если число отрицательное, знаки элементов изменяются по правилам умножения чисел.</p>
+    <h3>Частные случаи</h3>
+    <ul>
+      <li>1·A = A — умножение на единицу не меняет матрицу.</li>
+      <li>0·A = 0 — получается нулевая матрица того же размера.</li>
+      <li>(−1)·A = −A — все элементы меняют знак на противоположный.</li>
+    </ul>
+    <h3>Свойства</h3>
+    <div class="theory-box formula">k(A + B) = kA + kB
+(k + m)A = kA + mA
+k(mA) = (km)A</div>
+    <div class="theory-note"><b>Типичная ошибка:</b> умножая матрицу на скаляр, не перемножайте строки между собой. Нужно умножить на число каждый отдельный элемент.</div>
+  </div>
+
+  <div class="theory-section" id="t-mul">
+    <h2>4. Умножение матриц</h2>
+    <p>Умножение матриц отличается от сложения: элементы результата получают как скалярные произведения строк первой матрицы и столбцов второй.</p>
+    <h3>Условие существования произведения</h3>
+    <p>Если A имеет размер m×k, а B — k×n, то произведение AB определено, а результат C имеет размер m×n. Иными словами, <b>число столбцов первой матрицы должно равняться числу строк второй</b>.</p>
+    <div class="theory-box formula">A(m×k) · B(k×n) = C(m×n)
+c<sub>ij</sub> = Σ a<sub>ir</sub> · b<sub>rj</sub></div>
+    <h3>Разобранный пример 2×2</h3>
+    <div class="theory-box">A = | 1  2 |    B = | 5  6 |
+    | 3  4 |        | 7  8 |
+
+Каждый элемент результата — строка A на столбец B:
+c₁₁ = 1·5 + 2·7 = 5 + 14 = 19
+c₁₂ = 1·6 + 2·8 = 6 + 16 = 22
+c₂₁ = 3·5 + 4·7 = 15 + 28 = 43
+c₂₂ = 3·6 + 4·8 = 18 + 32 = 50
+
+C = AB = | 19  22 |
+         | 43  50 |</div>
+    <h3>Пример с прямоугольными матрицами</h3>
+    <p>Матрица размера 2×3 может умножаться на матрицу 3×2. Результат будет иметь размер 2×2. Но произведение матриц 2×3 и 2×2 не определено, потому что внутренние размеры 3 и 2 не совпадают.</p>
+    <h3>Свойства умножения</h3>
+    <ul>
+      <li>В общем случае AB ≠ BA — переместительное свойство не выполняется.</li>
+      <li>A(BC) = (AB)C — сочетательное свойство.</li>
+      <li>A(B + C) = AB + AC — распределительное свойство.</li>
+      <li>AE = EA = A, если размеры позволяют выполнить умножение.</li>
+    </ul>
+    <div class="theory-note"><b>Главное правило:</b> умножайте строку на столбец, а не элементы с одинаковыми индексами. Перед вычислением проверьте размеры матриц.</div>
+  </div>
+
+  <div class="theory-section" id="t-transpose">
+    <h2>5. Транспонирование</h2>
+    <p><b>Транспонирование</b> — это операция, при которой строки матрицы становятся столбцами, а столбцы — строками. Обозначение транспонированной матрицы — Aᵀ.</p>
+    <div class="theory-box formula">(Aᵀ)<sub>ij</sub> = A<sub>ji</sub></div>
+    <h3>Разобранный пример</h3>
+    <div class="theory-box">A = | 1  2  3 |       Aᵀ = | 1  4 |
+    | 4  5  6 |             | 2  5 |
+                           | 3  6 |
+
+Первая строка (1, 2, 3) стала первым столбцом.
+Вторая строка (4, 5, 6) стала вторым столбцом.</div>
+    <p>Исходная матрица имела размер 2×3, после транспонирования размер стал 3×2. Число строк и столбцов меняется местами.</p>
+    <h3>Свойства транспонирования</h3>
+    <ul>
+      <li>(Aᵀ)ᵀ = A — двойное транспонирование возвращает исходную матрицу.</li>
+      <li>(A + B)ᵀ = Aᵀ + Bᵀ.</li>
+      <li>(kA)ᵀ = kAᵀ.</li>
+      <li>(AB)ᵀ = BᵀAᵀ — порядок множителей меняется на обратный.</li>
+    </ul>
+    <h3>Особые виды квадратных матриц</h3>
+    <p>Матрица называется <b>симметричной</b>, если Aᵀ = A. Она симметрична относительно главной диагонали. Матрица называется <b>кососимметричной</b>, если Aᵀ = −A; у такой матрицы элементы главной диагонали равны нулю.</p>
+    <div class="theory-note"><b>Типичная ошибка:</b> при транспонировании не меняют сами значения элементов — меняются только их позиции.</div>
+  </div>
+
+  <div class="theory-section" id="t-det">
+    <h2>6. Определитель матрицы</h2>
+    <p><b>Определитель</b> — это число, которое ставится в соответствие квадратной матрице. Обозначается det(A) или |A|. Определитель существует только у квадратных матриц.</p>
+    <h3>Определитель матрицы 2×2</h3>
+    <div class="theory-box formula">A = | a  b |     det(A) = ad − bc
     | c  d |</div>
-            <h3>Пример 2×2</h3>
-            <div class="theory-box">A = | 3  2 |    det(A) = 3·4 - 2·1 = 12 - 2 = 10
-    | 1  4 |</div>
-            <h3>Определитель 3×3 (правило Саррюса)</h3>
-            <div class="theory-box">A = | a  b  c |
-    | d  e  f |
-    | g  h  i |
-
-det(A) = a(ei - fh) - b(di - fg) + c(dh - eg)</div>
-            <h3>Пример 3×3</h3>
-            <div class="theory-box">A = | 1  2  3 |
+    <p>Из произведения элементов главной диагонали вычитают произведение элементов побочной диагонали.</p>
+    <div class="theory-box">A = | 3  2 |    det(A) = 3·4 − 2·1
+    | 1  4 |            = 12 − 2 = 10</div>
+    <h3>Определитель матрицы 3×3</h3>
+    <p>Для матрицы 3×3 можно использовать правило Саррюса или разложение по строке/столбцу. Формула разложения по первой строке:</p>
+    <div class="theory-box formula">det(A) = a(ei − fh) − b(di − fg) + c(dh − eg)</div>
+    <h3>Разобранный пример 3×3</h3>
+    <div class="theory-box">A = | 1  2  3 |
     | 4  5  6 |
     | 7  8  9 |
 
-det(A) = 1·(5·9 - 6·8) - 2·(4·9 - 6·7) + 3·(4·8 - 5·7)
-       = 1·(45-48) - 2·(36-42) + 3·(32-35)
-       = 1·(-3) - 2·(-6) + 3·(-3)
-       = -3 + 12 - 9 = 0</div>
-            <div class="theory-note"><b>Важно:</b> Если det(A) = 0, матрица называется <b>вырожденной</b> — обратной матрицы не существует.</div>
-          </div>
+det(A) = 1·(5·9 − 6·8) − 2·(4·9 − 6·7)
+         + 3·(4·8 − 5·7)
+       = 1·(45 − 48) − 2·(36 − 42)
+         + 3·(32 − 35)
+       = −3 + 12 − 9 = 0</div>
+    <h3>Важные свойства определителя</h3>
+    <ul>
+      <li>При перестановке двух строк (или столбцов) знак определителя меняется.</li>
+      <li>Если две строки (или столбца) одинаковы или пропорциональны, определитель равен нулю.</li>
+      <li>Если строка состоит из нулей, определитель равен нулю.</li>
+      <li>Для треугольной матрицы определитель равен произведению элементов главной диагонали.</li>
+      <li>det(AB) = det(A)·det(B) для квадратных матриц одного порядка.</li>
+    </ul>
+    <div class="theory-note"><b>Важно:</b> если det(A) = 0, матрица вырожденная и обратной матрицы у неё нет. Не забывайте учитывать знак «минус» во втором слагаемом формулы 3×3.</div>
+  </div>
 
-          <div class="theory-section" id="t-inverse">
-            <h2>7. Обратная матрица</h2>
-            <p>Обратная матрица A⁻¹ — такая матрица, что A · A⁻¹ = A⁻¹ · A = E (единичная матрица). Существует только если det(A) ≠ 0.</p>
-            <h3>Формула для матрицы 2×2</h3>
-            <div class="theory-box">A = | a  b |           1     | d  -b |
-    | c  d |    A⁻¹ = ————— · |       |
-                       det(A)  | -c   a |</div>
-            <h3>Пример</h3>
-            <div class="theory-box">A = | 2  1 |    det(A) = 2·4 - 1·3 = 5
+  <div class="theory-section" id="t-inverse">
+    <h2>7. Обратная матрица</h2>
+    <p><b>Обратной</b> к квадратной матрице A называется матрица A⁻¹, произведение которой на A в любом порядке даёт единичную матрицу E.</p>
+    <div class="theory-box formula">A · A⁻¹ = A⁻¹ · A = E</div>
+    <p>Обратная матрица существует <b>только тогда, когда det(A) ≠ 0</b>. Если определитель равен нулю, обратной матрицы не существует.</p>
+    <h3>Формула для матрицы 2×2</h3>
+    <div class="theory-box">A = | a  b |       A⁻¹ = 1/det(A) · |  d  −b |
+    | c  d |                         | −c   a |</div>
+    <p>Чтобы найти обратную матрицу 2×2: поменяйте местами элементы главной диагонали, у элементов побочной диагонали измените знаки, затем разделите все элементы на определитель.</p>
+    <h3>Разобранный пример</h3>
+    <div class="theory-box">A = | 2  1 |    det(A) = 2·4 − 1·3 = 5
     | 3  4 |
 
-A⁻¹ = (1/5) · | 4  -1 | = | 0.8  -0.2 |
-               | -3   2 |   | -0.6   0.4 |</div>
-            <h3>Проверка</h3>
-            <div class="theory-box">A · A⁻¹ = | 2  1 | · | 0.8  -0.2 | = | 1  0 | = E ✓
-             | 3  4 |   | -0.6  0.4 |   | 0  1 |</div>
-          </div>
+1. det(A) = 5, значит обратная матрица существует.
+2. Меняем 2 и 4 местами, у 1 и 3 меняем знаки:
+   | 4  −1 |
+   | −3  2 |
+3. Делим каждый элемент на 5:
+A⁻¹ = | 0.8  −0.2 |
+      | −0.6  0.4 |</div>
+    <h3>Проверка результата</h3>
+    <p>Умножьте исходную матрицу на найденную обратную. Если вычисления верны, получится единичная матрица.</p>
+    <div class="theory-box">A · A⁻¹ = | 1  0 |
+            | 0  1 | = E</div>
+    <div class="theory-note"><b>Типичные ошибки:</b> пытаться найти обратную матрицу для неквадратной матрицы; не проверять определитель; забывать изменить знаки у двух элементов побочной диагонали.</div>
+  </div>
 
-          <div class="theory-section" id="t-rank">
-            <h2>8. Ранг матрицы</h2>
-            <p>Ранг матрицы — максимальное число линейно независимых строк (или столбцов). Обозначается rang(A) или rk(A).</p>
-            <h3>Метод Гаусса (элементарные преобразования)</h3>
-            <ul>
-              <li>Переставить строки/столбцы местами</li>
-              <li>Умножить строку на ненулевое число</li>
-              <li>Прибавить к одной строке другую, умноженную на число</li>
-            </ul>
-            <p>После приведения к ступенчатому виду ранг = число ненулевых строк.</p>
-            <h3>Пример</h3>
-            <div class="theory-box">A = | 1  2  3 |   →  | 1  2  3 |   →  | 1  2  3 |
-    | 2  4  6 |      | 0  0  0 |      | 0  1  2 |
-    | 0  1  2 |      | 0  1  2 |      | 0  0  0 |
+  <div class="theory-section" id="t-rank">
+    <h2>8. Ранг матрицы</h2>
+    <p><b>Ранг матрицы</b> — это максимальное число линейно независимых строк или столбцов. Обозначается rang(A) или rk(A). Ранг показывает, сколько строк (или столбцов) содержат независимую информацию.</p>
+    <p>Для матрицы размера m×n ранг не может быть больше меньшего из чисел m и n:</p>
+    <div class="theory-box formula">0 ≤ rang(A) ≤ min(m, n)</div>
+    <h3>Нахождение ранга методом Гаусса</h3>
+    <p>Обычно матрицу приводят к ступенчатому виду с помощью элементарных преобразований строк:</p>
+    <ul>
+      <li>поменять две строки местами;</li>
+      <li>умножить строку на ненулевое число;</li>
+      <li>прибавить к одной строке другую строку, умноженную на число.</li>
+    </ul>
+    <p>Эти преобразования не изменяют ранг. После получения ступенчатого вида нужно посчитать количество ненулевых строк — это и будет ранг.</p>
+    <h3>Разобранный пример</h3>
+    <div class="theory-box">A = | 1  2  3 |
+    | 2  4  6 |
+    | 0  1  2 |
 
-rang(A) = 2 (две ненулевые строки)</div>
-            <div class="theory-note"><b>Свойство:</b> rang(A) ≤ min(m, n), где m — строки, n — столбцы.</div>
-          </div>
+Выполним R₂ = R₂ − 2R₁:
+| 1  2  3 |
+| 0  0  0 |
+| 0  1  2 |
 
-          <div class="theory-section" id="t-sle">
-            <h2>9. Системы линейных уравнений</h2>
-            <p>Система линейных уравнений (СЛУ) вида Ax = b решается несколькими методами.</p>
-            <h3>Метод Крамера (для квадратных систем)</h3>
-            <p>Если det(A) ≠ 0, система имеет единственное решение:</p>
-            <div class="theory-box formula">x<sub>i</sub> = det(A<sub>i</sub>) / det(A)</div>
-            <p>где A<sub>i</sub> — матрица, полученная заменой i-го столбца на столбец правых частей b.</p>
-            <h3>Пример</h3>
-            <div class="theory-box">2x₁ + x₂ = 5
-x₁ + 3x₂ = 10
+Переставим вторую и третью строки:
+| 1  2  3 |
+| 0  1  2 |
+| 0  0  0 |
 
-A = | 2  1 |    b = | 5  |    det(A) = 2·3 - 1·1 = 5
-    | 1  3 |         | 10 |
+Ненулевых строк две, поэтому rang(A) = 2.</div>
+    <h3>Полезные замечания</h3>
+    <ul>
+      <li>У нулевой матрицы ранг равен 0.</li>
+      <li>У единичной матрицы порядка n ранг равен n.</li>
+      <li>У квадратной матрицы порядка n ранг равен n тогда и только тогда, когда её определитель не равен нулю.</li>
+    </ul>
+    <div class="theory-note"><b>Запомни:</b> считайте ненулевые строки только после приведения к ступенчатому виду. Нулевые строки в ранг не входят.</div>
+  </div>
 
-A₁ = | 5   1 |    det(A₁) = 5·3 - 1·10 = 5     x₁ = 5/5 = 1
+  <div class="theory-section" id="t-sle">
+    <h2>9. Системы линейных уравнений</h2>
+    <p><b>Система линейных уравнений (СЛУ)</b> — это несколько линейных уравнений с общими неизвестными. В матричной форме систему записывают как Ax = b, где A — матрица коэффициентов, x — столбец неизвестных, b — столбец свободных членов.</p>
+    <div class="theory-box">a₁₁x₁ + a₁₂x₂ + … + a₁ₙxₙ = b₁
+ a₂₁x₁ + a₂₂x₂ + … + a₂ₙxₙ = b₂
+                  …
+Ax = b</div>
+    <h3>Метод Крамера</h3>
+    <p>Метод Крамера применяют к квадратной системе из n уравнений с n неизвестными. Если главный определитель D = det(A) не равен нулю, система имеет единственное решение.</p>
+    <div class="theory-box formula">xᵢ = Dᵢ / D</div>
+    <p>Dᵢ — определитель матрицы, полученной заменой i-го столбца матрицы коэффициентов на столбец свободных членов.</p>
+    <h3>Пример по методу Крамера</h3>
+    <div class="theory-box">2x₁ + x₂ = 5
+ x₁ + 3x₂ = 10
+
+D = | 2  1 | = 2·3 − 1·1 = 5
+    | 1  3 |
+
+D₁ = | 5   1 | = 5·3 − 1·10 = 5
      | 10  3 |
-
-A₂ = | 2   5 |    det(A₂) = 2·10 - 5·1 = 15    x₂ = 15/5 = 3
+D₂ = | 2   5 | = 2·10 − 5·1 = 15
      | 1  10 |
 
-Ответ: x₁ = 1,  x₂ = 3</div>
-            <h3>Метод Гаусса</h3>
-            <p>Записываем расширенную матрицу [A|b] и приводим к ступенчатому виду элементарными преобразованиями над строками, затем находим решение обратной подстановкой.</p>
-            <div class="theory-note"><b>Теорема Кронекера–Капелли:</b> СЛУ совместна тогда и только тогда, когда rang(A) = rang(A|b).</div>
+x₁ = D₁/D = 5/5 = 1
+x₂ = D₂/D = 15/5 = 3
+Ответ: x₁ = 1, x₂ = 3.</div>
+    <h3>Метод Гаусса</h3>
+    <p>Метод Гаусса подходит для систем разного размера. Сначала составляют расширенную матрицу [A|b], затем элементарными преобразованиями строк приводят её к ступенчатому виду. После этого неизвестные находят обратной подстановкой.</p>
+    <div class="theory-box">Система:             [A|b]:
+2x₁ + x₂ = 5        | 2  1 | 5 |
+ x₁ + 3x₂ = 10      | 1  3 | 10|
 
-            <h3>Метод Гаусса (прямой ход + обратная подстановка)</h3>
-            <p>Записываем расширенную матрицу системы [A|b] и элементарными преобразованиями строк приводим к ступенчатому виду, затем находим решение обратной подстановкой.</p>
-            <div class="theory-box">Система:          Расширенная матрица [A|b]:
-2x₁ +  x₂ = 5    | 2  1 | 5 |
- x₁ + 3x₂ = 10   | 1  3 | 10|
+Шаг 1. R₂ = R₂ − (1/2)R₁:
+| 2   1   | 5   |
+| 0   2.5 | 7.5 |
 
-Шаг 1: R2 = R2 − (1/2)·R1
-| 2    1  | 5   |
-| 0  2.5  | 7.5 |
+Шаг 2. Из второй строки: 2.5x₂ = 7.5, x₂ = 3.
+Шаг 3. Из первой строки: 2x₁ + 3 = 5, x₁ = 1.
+Ответ: x₁ = 1, x₂ = 3.</div>
+    <h3>Сколько решений имеет система</h3>
+    <p>По теореме Кронекера–Капелли система совместна (имеет хотя бы одно решение) тогда и только тогда, когда ранг матрицы коэффициентов равен рангу расширенной матрицы:</p>
+    <div class="theory-box formula">rang(A) = rang(A|b)</div>
+    <ul>
+      <li>Если ранги различны — решений нет.</li>
+      <li>Если ранги равны и совпадают с числом неизвестных — решение единственное.</li>
+      <li>Если ранги равны, но меньше числа неизвестных — решений бесконечно много.</li>
+    </ul>
+    <div class="theory-note"><b>Крамер и Гаусс:</b> Крамер удобен для небольших квадратных систем с ненулевым определителем. Гаусс универсальнее и позволяет исследовать системы, в том числе с несколькими или отсутствующими решениями.</div>
+  </div>
 
-Шаг 2 (обратная подстановка):
-2.5·x₂ = 7.5  →  x₂ = 3
-2·x₁ = 5 − 1·3 = 2  →  x₁ = 1
-
-Ответ: x₁ = 1,  x₂ = 3</div>
-            <div class="theory-note"><b>Крамер vs Гаусс:</b> Крамер — удобен для 2×2, 3×3 с единственным решением. Гаусс — универсален для любых систем.</div>
-          </div>
-
-
-          <div class="theory-section" id="t-minor">
-            <h2>10. Минор и алгебраическое дополнение <span style="font-size:14px;color:var(--accent);font-weight:500">— 11 класс</span></h2>
-            <p>Минор M<sub>ij</sub> элемента a<sub>ij</sub> матрицы A — определитель матрицы, полученной вычёркиванием i-й строки и j-го столбца из A.</p>
-            <div class="theory-box formula">M<sub>ij</sub> = det(A без строки i и столбца j)</div>
-            <h3>Алгебраическое дополнение</h3>
-            <p>Алгебраическое дополнение A<sub>ij</sub> — минор с учётом знака:</p>
-            <div class="theory-box formula">A<sub>ij</sub> = (−1)^(i+j) · M<sub>ij</sub></div>
-            <p>Знак определяется шахматным правилом: позиции (+) и (−) чередуются:</p>
-            <div class="theory-box">Шахматная матрица знаков:
-| + − + |
-| − + − |
-| + − + |</div>
-            <h3>Пример</h3>
-            <div class="theory-box">A = | 1  2  3 |
+  <div class="theory-section" id="t-minor">
+    <h2>10. Минор и алгебраическое дополнение <span style="font-size:14px;color:var(--accent);font-weight:500">— 11 класс</span></h2>
+    <p><b>Минор</b> M<sub>ij</sub> элемента a<sub>ij</sub> — это определитель матрицы, которая получается из исходной матрицы вычёркиванием i-й строки и j-го столбца.</p>
+    <div class="theory-box formula">M<sub>ij</sub> = det(матрицы без строки i и столбца j)</div>
+    <h3>Как найти минор</h3>
+    <ol>
+      <li>Выберите элемент a<sub>ij</sub>, для которого нужно найти минор.</li>
+      <li>Вычеркните строку, в которой находится элемент.</li>
+      <li>Вычеркните столбец, в котором находится элемент.</li>
+      <li>Вычислите определитель оставшейся матрицы.</li>
+    </ol>
+    <h3>Алгебраическое дополнение</h3>
+    <p><b>Алгебраическое дополнение</b> A<sub>ij</sub> — это минор элемента с учётом знака, который зависит от номера строки и столбца.</p>
+    <div class="theory-box formula">A<sub>ij</sub> = (−1)<sup>i+j</sup> · M<sub>ij</sub></div>
+    <p>Знаки располагаются в шахматном порядке, начиная с плюса в левом верхнем углу:</p>
+    <div class="theory-box">| +  −  + |
+| −  +  − |
+| +  −  + |</div>
+    <h3>Разобранный пример</h3>
+    <div class="theory-box">A = | 1  2  3 |
     | 4  5  6 |
     | 7  8  9 |
 
-M₁₂ (вычёркиваем строку 1, столбец 2):
+Найдём M₁₂. Вычёркиваем первую строку и второй столбец:
 M₁₂ = det| 4  6 | = 4·9 − 6·7 = 36 − 42 = −6
          | 7  9 |
 
-A₁₂ = (−1)^(1+2) · M₁₂ = (−1)³ · (−6) = +6</div>
-            <h3>Разложение по строке (теорема Лапласа)</h3>
-            <p>Определитель можно вычислить как сумму произведений элементов любой строки на их алгебраические дополнения:</p>
-            <div class="theory-box formula">det(A) = a<sub>i1</sub>·A<sub>i1</sub> + a<sub>i2</sub>·A<sub>i2</sub> + ... + a<sub>in</sub>·A<sub>in</sub></div>
-            <div class="theory-note"><b>Применение:</b> Миноры и алгебраические дополнения используются при вычислении определителей матриц высокого порядка и нахождении обратной матрицы через матрицу алгебраических дополнений (союзная матрица).</div>
-          </div>
-
+Теперь учитываем знак позиции (1, 2):
+A₁₂ = (−1)^(1+2) · (−6)
+    = (−1)³ · (−6) = +6</div>
+    <h3>Разложение определителя по строке или столбцу</h3>
+    <p>По теореме Лапласа определитель квадратной матрицы можно разложить по любой строке или столбцу: каждый элемент умножается на своё алгебраическое дополнение, а результаты складываются.</p>
+    <div class="theory-box formula">По i-й строке:
+det(A) = a<sub>i1</sub>A<sub>i1</sub> + … + a<sub>in</sub>A<sub>in</sub></div>
+    <p>На практике часто выбирают строку или столбец с наибольшим количеством нулей: тогда часть слагаемых сразу исчезает и вычислений становится меньше.</p>
+    <div class="theory-note"><b>Не путай:</b> минор — это сам определитель после вычёркивания строки и столбца; алгебраическое дополнение — тот же минор, умноженный на соответствующий знак.</div>
+  </div>
         </div><!-- /theory-body -->
       </div><!-- /page-theory -->
 
@@ -824,6 +969,7 @@ A₁₂ = (−1)^(1+2) · M₁₂ = (−1)³ · (−6) = +6</div>
     </div>
     <button class="btn-cancel" onclick="cancelTest()">← Отменить и вернуться</button>
   </div>
+
 </div>
 
 <!-- ══════════ RESULT ══════════ -->
@@ -879,6 +1025,9 @@ A₁₂ = (−1)^(1+2) · M₁₂ = (−1)³ · (−6) = +6</div>
         <button class="panel-btn"        id="spb-control" onclick="superPage('control')"><span class="pb-icon">📝</span>Контрольная</button>
 
         <div class="panel-divider"></div>
+        <div class="panel-section-label">Результаты</div>
+        <button class="panel-btn" id="spb-history" onclick="superPage('history')"><span class="pb-icon">📊</span>История учеников</button>
+        <div class="panel-divider"></div>
         <div class="panel-section-label">Управление</div>
         <button class="panel-btn"        id="spb-manage"  onclick="superPage('manage')"> <span class="pb-icon">⚙️</span>Мои тесты</button>
 
@@ -920,6 +1069,35 @@ A₁₂ = (−1)^(1+2) · M₁₂ = (−1)³ · (−6) = +6</div>
         <div class="page-subtitle">Создавайте контрольные — ученики увидят их в своём разделе</div>
         <button class="btn-add-new" onclick="openCtrlEditor(null)">＋ Создать контрольную работу</button>
         <div id="super-ctrl-list"><!-- filled by JS --></div>
+      </div>
+
+      <!-- PAGE: История учеников -->
+      <div class="page" id="spage-history">
+        <div class="page-title">История учеников</div>
+        <div class="page-subtitle">Просмотр результатов и разборов выполненных тестов</div>
+        <div id="admin-history-summary" class="admin-history-summary"></div>
+        <div class="admin-export-tools">
+          <span>Экспорт всех результатов:</span>
+          <button class="btn-add-new" onclick="exportAdminResults('excel')">📊 Скачать Excel</button>
+          <button class="btn-add-new" onclick="exportAdminResults('word')">📄 Скачать Word</button>
+        </div>
+        <div id="admin-students-view">
+          <div class="admin-history-tools">
+            <input class="admin-history-search" id="admin-student-search" placeholder="Поиск ученика по имени или классу" oninput="filterAdminStudents()">
+            <button class="btn-add-new" onclick="buildAdminHistory()">↻ Обновить</button>
+          </div>
+          <div id="admin-students-list"><div class="admin-history-empty">Загрузка списка учеников...</div></div>
+        </div>
+        <div id="admin-student-detail" style="display:none">
+          <button class="admin-back" onclick="backToAdminStudents()">← К списку учеников</button>
+          <div id="admin-student-heading"></div>
+          <div class="admin-export-tools admin-student-export-tools">
+            <span>Экспорт результатов ученика:</span>
+            <button class="btn-add-new" onclick="exportAdminResults('excel',selectedAdminStudentId)">📊 Excel</button>
+            <button class="btn-add-new" onclick="exportAdminResults('word',selectedAdminStudentId)">📄 Word</button>
+          </div>
+          <div id="admin-student-results"></div>
+        </div>
       </div>
 
       <!-- PAGE: Управление тестами -->
@@ -1115,7 +1293,7 @@ function initTheoryScroll(){
 /* ═══════════════════════════════════════════
    HELPERS
 ═══════════════════════════════════════════ */
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+id).classList.add('active');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+id).classList.add('active');if(typeof mascotScreenState==='function')mascotScreenState(id);}
 function showToast(msg,dur=2500){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
 function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
@@ -1719,15 +1897,146 @@ function openInfo(){
 /* ═══════════════════════════════════════════
    TEST FLOW
 ═══════════════════════════════════════════ */
+let mascotMessageTimer=null, mascotFrameTimer=null, mascotDanceActive=false, mascotIntroActive=false, mascotStaticPeek=false;
+const MASCOT_FRAMES={idle:4,hello:3,dance:4,happy:4,wrong:3,victory:4,think:4,peek:3};
+const MASCOT_SPEED={idle:520,hello:105,dance:45,happy:180,wrong:260,victory:150,think:420,peek:520};
+let mascotCurrentMood='idle';
+function mascotSetFrames(name,count,speed){
+ const sprite=document.getElementById('mascot-sprite');if(!sprite)return;
+ if(mascotStaticPeek)return;
+ clearInterval(mascotFrameTimer);let frame=1;
+ sprite.src=`/assets/mascot/${name}_${frame}.png`;mascotCurrentMood=name;
+ if(count>1)mascotFrameTimer=setInterval(()=>{frame=frame%count+1;sprite.src=`/assets/mascot/${name}_${frame}.png`;},speed||MASCOT_SPEED[name]||400);
+}
+function mascotSetMessageForScreen(id){
+ const w=document.getElementById('mascot-widget'),m=document.getElementById('mascot-message');
+ if(!w||!m)return;
+ const messages={
+  login:'Привет! Я Матрикс. Помогу освоиться в тренажёре.',
+  main:'Выбирай тему и режим — я буду рядом!',
+  info:'Перед началом проверь количество вопросов и время. Удачи!',
+  question:'Внимательно прочитай условие. Если понадобится помощь, нажми «Подсказка».',
+  result:'Посмотрим, каким получился результат!',
+  super:'Панель управления открыта. Здесь можно настроить материалы и тесты.'
+ };
+ m.textContent=messages[id]||'Я Матрикс. Продолжим заниматься!';
+ w.classList.toggle('hint-available',id==='question');
+}
+function mascotScreenState(id){
+ const w=document.getElementById('mascot-widget');if(!w)return;
+ // Смена экрана снимает фиксацию клика, чтобы эмоции и анимации снова работали.
+ mascotStaticPeek=false;mascotDanceActive=false;w.classList.remove('clicked-static');
+ w.classList.toggle('main-peek',id==='main');
+ mascotSetMessageForScreen(id);
+ if(id==='result')return; // Эмоцию результата задаёт mascotReactToFinalResult.
+ if(mascotIntroActive)return;
+ if(id==='main'){
+  clearInterval(mascotFrameTimer);mascotCurrentMood='peek';
+  const sprite=document.getElementById('mascot-sprite');if(sprite)sprite.src='/assets/mascot/peek_2.png';
+  return;
+ }
+ mascotSetFrames('idle',4,MASCOT_SPEED.idle);
+}
+function mascotStartIntro(){
+ const w=document.getElementById('mascot-widget');if(!w)return;
+ mascotStaticPeek=false;mascotIntroActive=true;w.classList.remove('main-peek');w.classList.add('intro','message');
+ mascotSetFrames('hello',3,MASCOT_SPEED.hello);
+ const m=document.getElementById('mascot-message');if(m)m.textContent='Привет! Я Матрикс.';
+ setTimeout(()=>{
+  mascotIntroActive=false;w.classList.remove('intro','message');
+  const active=document.querySelector('.screen.active');mascotScreenState(active?active.id.replace('screen-',''):'login');
+ },3000);
+}
+function mascotSay(message,mood='think',keepOpen=false){
+ const w=document.getElementById('mascot-widget'),m=document.getElementById('mascot-message');if(!w||!m)return;
+ m.textContent=message;w.classList.add('message');mascotSetFrames(mood,MASCOT_FRAMES[mood]||4,MASCOT_SPEED[mood]);
+ if(keepOpen)w.classList.add('open');clearTimeout(mascotMessageTimer);
+ if(!keepOpen)mascotMessageTimer=setTimeout(()=>w.classList.remove('message'),4200);
+}
+function mascotToggle(){
+ const w=document.getElementById('mascot-widget');if(!w)return;
+ w.classList.toggle('open');
+ if(w.classList.contains('open')){
+  w.classList.remove('message');
+  const active=document.querySelector('.screen.active');const id=active?active.id.replace('screen-',''):'login';
+  mascotSetMessageForScreen(id);
+  // На главной по нажатию оставляем ровно peek_2 до ухода курсора.
+  if(id==='main'){
+   mascotDanceActive=false;mascotStaticPeek=true;clearInterval(mascotFrameTimer);
+   w.classList.add('clicked-static');mascotCurrentMood='peek';
+   const sprite=document.getElementById('mascot-sprite');if(sprite)sprite.src='/assets/mascot/peek_2.png';
+  }
+ }
+}
+function mascotShowHint(event){
+ if(event)event.stopPropagation();
+ const q=currentQuestions[currentQ],s=((q&&(q.text||q.title||q.question))||'').toLowerCase();let h=(q&&q.hint)||(q&&q.fillHint)||'';
+ if(!h){
+  if(/определител|det\s*\(?a\)?|det\(/i.test(s))h='Для матрицы 2×2 перемножь элементы главной диагонали, затем вычти произведение элементов побочной диагонали.';
+  else if(/обратн|a⁻¹|a\^-1/i.test(s))h='Сначала вычисли det(A). Если он равен нулю, обратной матрицы нет. Для 2×2 поменяй местами элементы главной диагонали и измени знаки у побочной.';
+  else if(/произведени|a·b/i.test(s))h='Выбери строку первой матрицы и столбец второй. Перемножь элементы попарно и сложи полученные произведения.';
+  else if(/транспонир|aᵀ|a\^t/i.test(s))h='При транспонировании строки исходной матрицы становятся столбцами. Элемент aᵢⱼ переходит на позицию aⱼᵢ.';
+  else if(/ранг/i.test(s))h='Приведи матрицу к ступенчатому виду. Количество ненулевых строк — это ранг.';
+  else if(/систем|x₁|x1/i.test(s))h='Можно применить метод Крамера: найди главный определитель, затем определители с заменёнными столбцами.';
+  else if(/скаляр|k\s*·|умножьте на/i.test(s))h='Умножь каждый элемент матрицы на заданный скаляр. Размер матрицы не меняется.';
+  else if(/сумм|a\s*\+\s*b/i.test(s))h='Складывай элементы, стоящие на одинаковых позициях. Размеры матриц должны совпадать.';
+  else if(/размер матриц|количество строк/i.test(s))h='Строки считаются горизонтально, столбцы — вертикально. Размер записывается как строки × столбцы.';
+  else h='Для этой темы пока нет отдельной подсказки. Открой соответствующий раздел теории и проверь правило операции.';
+ }
+ mascotSay(h,'think',true);
+}
+function mascotReactToFinalResult(percent){
+ const w=document.getElementById('mascot-widget');if(!w)return;
+ mascotStaticPeek=false;mascotDanceActive=false;clearInterval(mascotFrameTimer);
+ w.classList.remove('message','open','main-peek','clicked-static');
+ const m=document.getElementById('mascot-message');
+ if(percent>=90){if(m)m.textContent='Невероятно! Ты отлично справился!';mascotSetFrames('victory',4,MASCOT_SPEED.victory);}
+ else if(percent>=70){if(m)m.textContent='Здорово! Получился хороший результат!';mascotSetFrames('happy',4,MASCOT_SPEED.happy);}
+ else if(percent<50){if(m)m.textContent='Не унывай. Давай ещё раз разберём сложные темы.';mascotSetFrames('wrong',3,MASCOT_SPEED.wrong);}
+ else{if(m)m.textContent='Есть над чем поработать. Следующая попытка будет увереннее!';mascotSetFrames('think',4,MASCOT_SPEED.think);}
+ w.classList.add('message');clearTimeout(mascotMessageTimer);mascotMessageTimer=setTimeout(()=>w.classList.remove('message'),5000);
+}
+const mascotWidget=document.getElementById('mascot-widget');
+if(mascotWidget){
+ mascotWidget.addEventListener('mouseenter',()=>{
+  if(mascotIntroActive||mascotStaticPeek)return;
+  const active=document.querySelector('.screen.active');
+  if(active&&active.id==='screen-main'){
+   mascotDanceActive=true;mascotSetFrames('dance',4,MASCOT_SPEED.dance);
+  }
+ });
+ mascotWidget.addEventListener('mouseleave',()=>{
+  mascotDanceActive=false;mascotStaticPeek=false;mascotWidget.classList.remove('clicked-static');
+  const active=document.querySelector('.screen.active');
+  if(!mascotIntroActive&&!(active&&active.id==='screen-result'))mascotScreenState(active?active.id.replace('screen-',''):'login');
+ });
+ window.addEventListener('load',mascotStartIntro,{once:true});
+}
+
 function startTest(){
-  if(currentMode==='typed') currentQuestions=Array(currentTestDef.questions).fill(null).map(()=>TG[selectedOperation]());
+  if(currentMode==='typed'){
+    currentQuestions=Array(currentTestDef.questions).fill(null).map(()=>{
+      const q=TG[selectedOperation]();
+      if(q) q.topic_key=selectedOperation;
+      return q;
+    }).filter(Boolean);
+  }
   else if(currentMode==='control'){
-    currentQuestions=currentTestDef.topics.map(t=>{const fn=CG[t];return fn?fn():null;}).filter(Boolean);
+    currentQuestions=currentTestDef.topics.map(t=>{
+      const fn=CG[t];
+      const q=fn?fn():null;
+      if(q) q.topic_key=t;
+      return q;
+    }).filter(Boolean);
     if(!currentQuestions.length){showToast('Не удалось сгенерировать вопросы');return;}
   }
-  else currentQuestions=currentTestDef.topics.map(t=>randomQGen(t)||(G[t]?G[t]():null)||G.add()).filter(Boolean);
+  else currentQuestions=currentTestDef.topics.map(t=>{
+    const q=randomQGen(t)||(G[t]?G[t]():null)||G.add();
+    if(q) q.topic_key=t;
+    return q;
+  }).filter(Boolean);
   if(!currentQuestions.length){showToast('Не удалось сгенерировать вопросы');return;}
-  currentQuestions=shuf(currentQuestions); // random order every time
+  currentQuestions=shuf(currentQuestions); // random order every time; topic_key stays with its question
   currentAnswers={};currentQ=0;lastResultId=null;
   timerRemaining=currentTestDef.time*60;testStartTime=Date.now();
   showScreen('question');renderQ();startTimer();
@@ -1775,7 +2084,8 @@ function nextQuestion(){
     const inp=document.getElementById('fill-inp');
     if(inp) currentAnswers[currentQ]=inp.value.trim();
     if(!currentAnswers[currentQ]){showToast('Введите ответ!');return;}
-  } else if(currentAnswers[currentQ]===undefined){showToast('Выберите ответ!');return;}if(currentQ<currentQuestions.length-1){currentQ++;renderQ();}else finishTest(false);}
+  } else if(currentAnswers[currentQ]===undefined){showToast('Выберите ответ!');return;}
+  if(currentQ<currentQuestions.length-1){currentQ++;renderQ();}else finishTest(false);}
 function cancelTest(){clearInterval(timerInterval);showScreen(launchScreen);if(launchScreen==='super'){superPage(currentSuperPage||'tests');}}
 
 /* ═══════════════════════════════════════════
@@ -1800,9 +2110,9 @@ async function loadHistory(){
 }
 async function downloadById(id){window.location.href=`/api/tests/results/${id}/word`;showToast('Скачивается...');}
 
-async function showReview(id){
+async function showReview(id, studentId=user.id){
   try{
-    const res=await apiGet(`/api/tests/results/user/${user.id}`);
+    const res=await apiGet(`/api/tests/results/user/${studentId}`);
     const r=res.find(x=>x.id===id);
     if(!r){showToast('Не удалось загрузить');return;}
     let detailed=[];
@@ -1831,12 +2141,35 @@ async function showReview(id){
       for(const[k,v] of Object.entries(explainMap)){if(ql.includes(k))return v;}
       return null;
     }
+    function getTheorySectionId(topicKey, questionText){
+      const topicMap={
+        add:'t-add', scalar:'t-scalar', multiply:'t-mul', transpose:'t-transpose',
+        size:'t-matrix', det:'t-det', det2:'t-det', det3:'t-det',
+        inverse:'t-inverse', rank:'t-rank', sle:'t-sle', minor:'t-minor',
+        matpow:'t-mul', transpose_check:'t-transpose', det_check:'t-det'
+      };
+      if(topicKey && topicMap[topicKey]) return topicMap[topicKey];
+      const ql=(questionText||'').toLowerCase();
+      if(/минор|алгебраическ.*дополн/.test(ql)) return 't-minor';
+      if(/обратн.*матриц|a⁻¹|a\^-1/.test(ql)) return 't-inverse';
+      if(/ранг/.test(ql)) return 't-rank';
+      if(/систем.*уравнен|крамер|гаусс/.test(ql)) return 't-sle';
+      if(/транспон|aᵀ|a\^t/.test(ql)) return 't-transpose';
+      if(/скаляр|умнож.*числ/.test(ql)) return 't-scalar';
+      if(/сумм|сложен/.test(ql)) return 't-add';
+      if(/определител|det\s*\(|2×2|3×3/i.test(ql)) return 't-det';
+      if(/произведен|умножен.*матриц|строк.*столбец/.test(ql)) return 't-mul';
+      if(/размер|порядок|строк.*столбц/.test(ql)) return 't-matrix';
+      if(/степен/.test(ql)) return 't-mul';
+      return null;
+    }
     document.getElementById('review-body').innerHTML=detailed.map((q,i)=>{
       const ok=q.is_correct;
       const qText=escHtml((q.question||'').replace(/\n/g,' · '));
       const uAns=escHtml(q.user_answer||'(не отвечено)');
       const cAns=escHtml(q.correct_answer||'');
       const exp=!ok?getExplain(q.question||''):null;
+      const theoryId=!ok?getTheorySectionId(q.topic_key,q.question||''):null;
       return `<div class="review-item ${ok?'correct':'wrong'}">
         <div class="review-num">Вопрос ${i+1}</div>
         <div class="review-q">${qText}</div>
@@ -1845,11 +2178,26 @@ async function showReview(id){
           ${!ok?`<span class="review-ans-correct">✓ ${cAns}</span>`:''}
         </div>
         ${exp?`<div class="review-explain">💡 ${escHtml(exp)}</div>`:''}
+        ${theoryId?`<button class="btn-review-theory" onclick="openTheoryFromReview('${theoryId}')">📖 Перейти к теме в теории</button>`:''}
       </div>`;
     }).join('');
     document.getElementById('review-modal').classList.add('open');
   }catch(e){showToast('Ошибка загрузки разбора');}
 }
+function openTheoryFromReview(sectionId){
+  const allowed=new Set(['t-matrix','t-add','t-scalar','t-mul','t-transpose','t-det','t-inverse','t-rank','t-sle','t-minor']);
+  if(!allowed.has(sectionId)) return;
+  const modal=document.getElementById('review-modal');
+  if(modal) modal.classList.remove('open');
+  // If the review was opened from the teacher's student-history panel, show the regular theory screen.
+  if(typeof superUser!=='undefined' && superUser) showScreen('main');
+  switchPage('theory');
+  setTimeout(()=>{
+    const link=[...document.querySelectorAll('.toc-link')].find(a=>a.getAttribute('onclick')?.includes("'"+sectionId+"'"));
+    scrollToSection(sectionId,link||null);
+  },140);
+}
+
 function closeReview(e){
   if(e&&e.target!==document.getElementById('review-modal'))return;
   document.getElementById('review-modal').classList.remove('open');
@@ -2042,6 +2390,18 @@ B = ${mS(B)}`,
 let dailyAnswered = false;
 let dailyTask = null;
 
+function renderDailyOption(opt) {
+  const mat = matFromStr(opt);
+  if (mat && Array.isArray(mat[0])) {
+    return `<div class="mat-row" style="justify-content:center;margin:0">${renderMatrix(mat)}</div>`;
+  }
+  return `<span class="mono">${escHtml(opt)}</span>`;
+}
+
+function buildDailyPage() {
+
+}
+
 function buildDailyPage() {
   // Streak from localStorage
   const today = new Date().toISOString().slice(0,10);
@@ -2102,14 +2462,6 @@ function buildDailyPage() {
     }
     html += '</div>';
     return html;
-  }
-
-  function renderDailyOption(opt) {
-    const mat = matFromStr(opt);
-    if (mat && Array.isArray(mat[0])) {
-      return `<div class="mat-row" style="justify-content:center;margin:0">${renderMatrix(mat)}</div>`;
-    }
-    return `<span class="mono">${escHtml(opt)}</span>`;
   }
 
   const lines = dailyTask.question.split('\n');
@@ -2175,17 +2527,47 @@ function submitDaily() {
   // Save answer
   try { localStorage.setItem('mx_daily_' + user.id + '_' + today, chosen); } catch(e) {}
 
+
   // Update streak
   try {
     let streak = parseInt(localStorage.getItem('mx_streak_'+user.id) || '0');
     const lastDay = localStorage.getItem('mx_streak_day_'+user.id) || '';
     const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+
     if (correct) {
-      streak = lastDay === yesterday || lastDay === today ? streak + (lastDay===today?0:1) : 1;
+      streak = lastDay === yesterday || lastDay === today
+        ? streak + (lastDay === today ? 0 : 1)
+        : 1;
+
       localStorage.setItem('mx_streak_'+user.id, streak);
       localStorage.setItem('mx_streak_day_'+user.id, today);
     }
-  } catch(e) {}
+
+    // Immediately update streak on the page
+    const container = document.getElementById('daily-container');
+    let streakElement = container.querySelector('.daily-streak');
+
+    if (correct) {
+      const word = streak === 1 ? 'день' : streak < 5 ? 'дня' : 'дней';
+
+      const streakHtml = `
+        <div class="daily-streak">
+          <div class="daily-streak-left">
+            <div class="daily-streak-num">${streak} ${word}</div>
+            <div class="daily-streak-label">Серия решений подряд</div>
+          </div>
+          <div class="daily-streak-icon">🔥</div>
+        </div>`;
+
+      if (streakElement) {
+        streakElement.outerHTML = streakHtml;
+      } else {
+        container.insertAdjacentHTML('afterbegin', streakHtml);
+      }
+    }
+  } catch(e) {
+    console.error('Ошибка обновления стрика:', e);
+  }
 
   // Highlight options
   document.querySelectorAll('.daily-options .option').forEach((el, i) => {
@@ -2203,6 +2585,8 @@ function submitDaily() {
     : '✗ Неверно. Правильный ответ: '+renderDailyOption(dailyTask.correct)+'<div class="daily-explain">💡 '+escHtml(dailyTask.hint)+'</div>';
 
   document.getElementById('btn-daily-submit').style.display = 'none';
+  // Обновляем страницу задачи дня после ответа
+  buildDailyPage();
 }
 
 function dlLocal(r){function esc(t){return String(t).replace(/\\/g,'\\\\').replace(/\{/g,'\\{').replace(/\}/g,'\\}').replace(/[^\x00-\x7E]/g,c=>`\\u${c.charCodeAt(0)}?`);}const mm=String(Math.floor(r.elapsed/60)).padStart(2,'0'),ss=String(r.elapsed%60).padStart(2,'0');const lines=[['T','РЕЗУЛЬТАТЫ — MatriX'],['e',''],['n',`Дата: ${r.date}`],['n',`Ученик: ${r.user.name} ${r.user.surname}`],['n',`Класс: ${r.user.cls}`],['e',''],['n',`Тест: ${r.test.title}`],['e',''],['h','РЕЗУЛЬТАТ:'],['n',`Правильных: ${r.correct} из ${r.total}`],['n',`Оценка: ${r.pct}%`],['n',`Время: ${mm}:${ss}`],['e',''],['h','ОТВЕТЫ:'],['e','']];r.questions.forEach((q,i)=>{const a=r.answers[i]??'—',ok=a===q.correct;lines.push(['n',`Вопрос ${i+1}: ${q.text}`],['n',`  Ответ: ${a}`],['n',`  Верный: ${q.correct}`],[ok?'ok':'err',ok?'  ВЕРНО':'  НЕВЕРНО'],['e','']);});const body=lines.map(([k,t])=>{const e=esc(t);if(k==='T')return`\\b\\fs32 ${e}\\b0\\fs24\\par`;if(k==='h')return`\\b ${e}\\b0\\par`;if(k==='ok')return`\\cf2 ${e}\\cf1\\par`;if(k==='err')return`\\cf3 ${e}\\cf1\\par`;if(k==='e')return'\\par';return`${e}\\par`;}).join('\n');const rtf=`{\\rtf1\\ansi\\deff0\n{\\fonttbl{\\f0 Arial;}}\n{\\colortbl;\\red0\\green0\\blue0;\\red0\\green128\\blue0;\\red200\\green0\\blue0;}\n\\f0\\fs24\n${body}\n}`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rtf],{type:'application/rtf'}));a.download=`MatriX_${r.user.surname}.rtf`;a.click();URL.revokeObjectURL(a.href);showToast('Файл скачан!');}
@@ -2292,6 +2676,9 @@ function doSuperLogout(){
 ═══════════════════════════════════════════ */
 let superPanelOpen = true;
 let currentSuperPage = 'tests';
+let adminStudentsCache = [];
+let adminResultsCache = [];
+let selectedAdminStudentId = null;
 function toggleSuperPanel(){
   superPanelOpen = !superPanelOpen;
   document.getElementById('super-panel-wrapper').classList.toggle('closed', !superPanelOpen);
@@ -2308,7 +2695,106 @@ function superPage(name){
   if(name==='typed'){ buildSuperTypedGrid(); }
   if(name==='control'){ _customCtrlsCacheInvalidate(); buildSuperCtrlList(); }
   if(name==='manage'){ buildSuperTestsList(); }
+  if(name==='history'){ buildAdminHistory(); }
   // ctrlset merged into control page
+}
+
+/* ═══════════════════════════════════════════
+   ADMIN: STUDENT HISTORY
+═══════════════════════════════════════════ */
+async function buildAdminHistory(){
+  const list=document.getElementById('admin-students-list');
+  const summary=document.getElementById('admin-history-summary');
+  if(!list||!summary)return;
+  list.innerHTML='<div class="admin-history-empty">Загружаем учеников и результаты...</div>';
+  try{
+    const [students,results]=await Promise.all([
+      apiGet('/api/users/'),
+      apiGet('/api/tests/results/all')
+    ]);
+    adminStudentsCache=students;
+    adminResultsCache=results;
+    const average=results.length
+      ? Math.round(results.reduce((sum,r)=>sum+(Number(r.percentage)||0),0)/results.length)
+      : 0;
+    summary.innerHTML=`
+      <div class="admin-stat"><strong>${students.length}</strong><span>Учеников</span></div>
+      <div class="admin-stat"><strong>${results.length}</strong><span>Попыток</span></div>
+      <div class="admin-stat"><strong>${average}%</strong><span>Средний результат</span></div>`;
+    document.getElementById('admin-student-search').value='';
+    document.getElementById('admin-students-view').style.display='';
+    document.getElementById('admin-student-detail').style.display='none';
+    renderAdminStudents(students);
+  }catch(e){
+    list.innerHTML='<div class="admin-history-empty">Не удалось загрузить данные. Проверьте подключение к серверу.</div>';
+    showToast('Ошибка загрузки истории учеников');
+  }
+}
+
+function renderAdminStudents(students){
+  const list=document.getElementById('admin-students-list');
+  if(!students.length){
+    list.innerHTML='<div class="admin-history-empty">Ученики пока не зарегистрированы</div>';
+    return;
+  }
+  list.innerHTML=students.map(st=>{
+    const attempts=adminResultsCache.filter(r=>r.user_id===st.id);
+    const avg=attempts.length?Math.round(attempts.reduce((sum,r)=>sum+(Number(r.percentage)||0),0)/attempts.length):0;
+    return `<div class="admin-student-card" onclick="openAdminStudent(${st.id})">
+      <div><div class="admin-student-name">${escHtml(st.last_name)} ${escHtml(st.first_name)}</div>
+      <div class="admin-student-meta">${escHtml(st.grade||'Класс не указан')} · Средний результат: ${attempts.length?avg+'%':'—'}</div></div>
+      <div class="admin-student-count">${attempts.length} ${attempts.length===1?'попытка':(attempts.length>=2&&attempts.length<=4?'попытки':'попыток')} →</div>
+    </div>`;
+  }).join('');
+}
+
+function filterAdminStudents(){
+  const query=(document.getElementById('admin-student-search').value||'').trim().toLowerCase();
+  const filtered=adminStudentsCache.filter(st=>
+    `${st.first_name} ${st.last_name} ${st.grade}`.toLowerCase().includes(query)
+  );
+  renderAdminStudents(filtered);
+}
+
+function openAdminStudent(studentId){
+  const st=adminStudentsCache.find(x=>x.id===studentId);
+  if(!st)return;
+  selectedAdminStudentId=studentId;
+  const attempts=adminResultsCache.filter(r=>r.user_id===studentId)
+    .sort((a,b)=>new Date(b.timestamp||0)-new Date(a.timestamp||0));
+  document.getElementById('admin-students-view').style.display='none';
+  document.getElementById('admin-student-detail').style.display='';
+  document.getElementById('admin-student-heading').innerHTML=`
+    <div class="admin-student-head"><strong>${escHtml(st.last_name)} ${escHtml(st.first_name)}</strong>
+    <span>${escHtml(st.grade||'Класс не указан')} · Всего попыток: ${attempts.length}</span></div>`;
+  const container=document.getElementById('admin-student-results');
+  if(!attempts.length){
+    container.innerHTML='<div class="admin-history-empty">У этого ученика пока нет сохранённых результатов</div>';
+    return;
+  }
+  container.innerHTML=attempts.map(r=>{
+    const sc=r.percentage>=70?'sg':r.percentage>=50?'sy':'sr';
+    const mm=String(Math.floor(r.time_spent/60)).padStart(2,'0');
+    const ss=String(r.time_spent%60).padStart(2,'0');
+    const date=r.timestamp?new Date(r.timestamp).toLocaleString('ru-RU'):'—';
+    return `<div class="hcard"><div><div class="hcard-title">${escHtml(r.test_title)}</div>
+      <div class="hcard-meta">${date} · ${r.correct_answers} из ${r.total_questions} верных · ⏱ ${mm}:${ss}</div></div>
+      <div class="hcard-right"><div class="hscore ${sc}">${r.percentage}%</div>
+      <button class="btn-review" onclick="showReview(${r.id},${studentId})">🔍 Разбор</button>
+      <button class="btn-dl" onclick="downloadById(${r.id})">📄 Word</button></div></div>`;
+  }).join('');
+}
+
+function exportAdminResults(format,userId=null){
+  const params=userId!==null&&userId!==undefined?`?user_id=${encodeURIComponent(userId)}`:'';
+  window.location.href=`/api/tests/export/${format}${params}`;
+  showToast(format==='excel'?'Готовим файл Excel...':'Готовим файл Word...');
+}
+
+function backToAdminStudents(){
+  selectedAdminStudentId=null;
+  document.getElementById('admin-student-detail').style.display='none';
+  document.getElementById('admin-students-view').style.display='';
 }
 
 async function buildSuperViewTestList(){
@@ -2726,6 +3212,7 @@ async function finishTest(timeout){
   document.getElementById('res-comment').textContent=comment;
   const wb=document.getElementById('btn-word');
   showScreen('result');
+  mascotReactToFinalResult(pct);
 
   if(superUser){
     // Admin: skip API, just show result without saving
@@ -2734,7 +3221,7 @@ async function finishTest(timeout){
   }
   wb.style.display='';
   wb.disabled=true;wb.innerHTML='<span class="spinner spinner-dark"></span> Сохранение...';
-  const detailed=currentQuestions.map((q,i)=>({question:q.text,user_answer:currentAnswers[i]??'(не отвечено)',correct_answer:q.correct,is_correct:currentAnswers[i]===q.correct}));
+  const detailed=currentQuestions.map((q,i)=>({question:q.text,topic_key:q.topic_key||null,user_answer:currentAnswers[i]??'(не отвечено)',correct_answer:q.correct,is_correct:currentAnswers[i]===q.correct}));
   try{const saved=await apiPost('/api/tests/results',{user_id:user.id,test_id:currentTestDef.id,test_title:currentTestDef.title,total_questions:tot,correct_answers:correct,percentage:pct,time_spent:elapsed,detailed_results:JSON.stringify(detailed)});lastResultId=saved.id;wb.disabled=false;wb.innerHTML='📄 Результаты в Word';}
   catch(e){showToast('Результат не сохранён');wb.disabled=false;wb.innerHTML='📄 Результаты в Word';window._localResult={user,test:currentTestDef,mode:currentMode,questions:currentQuestions,answers:{...currentAnswers},correct,total:tot,pct,elapsed,date:new Date().toLocaleString('ru-RU')};}
 }
@@ -2983,5 +3470,11 @@ async function buildSuperCtrlList(){
     </div>
   </div>
 </div>
+  <div class="mascot-widget" id="mascot-widget">
+    <div class="mascot-bubble" id="mascot-bubble"><strong>Матрикс</strong><span id="mascot-message">Привет! Я Матрикс. Наведи на меня — покажу небольшое движение.</span><br><button onclick="mascotShowHint(event)">Подсказка</button></div>
+    <button class="mascot-character" id="mascot-character" type="button" aria-label="Открыть подсказку Матрикса" onclick="mascotToggle()">
+      <img id="mascot-sprite" src="/assets/mascot/hello_1.png" alt="Матрикс — кубик с матрицей">
+    </button>
+  </div>
 </body>
 </html>
