@@ -12,6 +12,9 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 import json, io
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils import get_column_letter
 
 router = APIRouter(prefix="/api/tests", tags=["tests"])
 
@@ -310,6 +313,13 @@ async def save_result(data: TestResultCreate, db: AsyncSession = Depends(get_db)
     await db.refresh(tr)
     return tr
 
+@router.get("/results/all", response_model=list[TestResultOut])
+async def get_all_results(db: AsyncSession = Depends(get_db)):
+    res = await db.execute(
+        select(TestResult).order_by(TestResult.timestamp.desc())
+    )
+    return res.scalars().all()
+
 @router.get("/results/user/{user_id}", response_model=list[TestResultOut])
 async def get_user_results(user_id: int, db: AsyncSession = Depends(get_db)):
     res = await db.execute(
@@ -344,4 +354,175 @@ async def download_word(result_id: int, db: AsyncSession = Depends(get_db)):
         buf,
         media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         headers={"Content-Disposition": f"attachment; filename*=UTF-8''{encoded}"},
+    )
+
+# ═══════════════════════════════════════════════════════
+# EXPORT ALL RESULTS (EXCEL / WORD)
+# ═══════════════════════════════════════════════════════
+
+async def _get_export_rows(db: AsyncSession, user_id: int = None):
+    query = (
+        select(TestResult, User)
+        .join(User, User.id == TestResult.user_id)
+        .order_by(TestResult.timestamp.desc())
+    )
+    if user_id is not None:
+        query = query.where(TestResult.user_id == user_id)
+    res = await db.execute(query)
+    return res.all()
+
+
+def _export_filename(rows, extension: str) -> str:
+    if rows and len({tr.user_id for tr, _ in rows}) == 1:
+        user = rows[0][1]
+        base = f"MatriX_{user.last_name}_{user.first_name}"
+    else:
+        base = "MatriX_all_results"
+    from urllib.parse import quote
+    return quote(f"{base}.{extension}", safe="")
+
+
+@router.get("/export/excel")
+async def export_results_excel(user_id: int = None, db: AsyncSession = Depends(get_db)):
+    rows = await _get_export_rows(db, user_id)
+    if user_id is not None and not rows:
+        # Пустая выборка допустима: файл всё равно содержит заголовки.
+        user_res = await db.execute(select(User).where(User.id == user_id))
+        if not user_res.scalar_one_or_none():
+            raise HTTPException(404, "Ученик не найден")
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Результаты"
+    headers = ["Дата", "Ученик", "Класс", "Тест", "Верных ответов", "Всего вопросов", "Результат, %", "Время, сек."]
+    ws.append(headers)
+
+    header_fill = PatternFill("solid", fgColor="171717")
+    header_font = Font(name="Arial", bold=True, color="FFFFFF")
+    thin_gray = Side(style="thin", color="DDDDDD")
+    for cell in ws[1]:
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        cell.border = Border(bottom=thin_gray)
+
+    for tr, user in rows:
+        timestamp = tr.timestamp.strftime("%d.%m.%Y %H:%M") if tr.timestamp else "—"
+        ws.append([
+            timestamp,
+            f"{user.last_name} {user.first_name}",
+            user.grade or "—",
+            tr.test_title,
+            tr.correct_answers,
+            tr.total_questions,
+            tr.percentage,
+            tr.time_spent,
+        ])
+
+    widths = [19, 28, 12, 34, 19, 18, 16, 14]
+    for index, width in enumerate(widths, start=1):
+        ws.column_dimensions[get_column_letter(index)].width = width
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = ws.dimensions
+    ws.row_dimensions[1].height = 32
+    for row in ws.iter_rows(min_row=2):
+        for cell in row:
+            cell.alignment = Alignment(vertical="center", wrap_text=True)
+            cell.border = Border(bottom=thin_gray)
+
+    # Отдельный лист со сводной статистикой по каждому ученику.
+    summary = wb.create_sheet("Сводка по ученикам")
+    summary.append(["Ученик", "Класс", "Количество попыток", "Средний результат, %"])
+    for cell in summary[1]:
+        cell.fill = header_fill
+        cell.font = header_font
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    grouped = {}
+    for tr, user in rows:
+        grouped.setdefault(user.id, {"user": user, "scores": []})["scores"].append(int(tr.percentage or 0))
+    for item in sorted(grouped.values(), key=lambda x: (x["user"].grade or "", x["user"].last_name, x["user"].first_name)):
+        user = item["user"]
+        scores = item["scores"]
+        average = round(sum(scores) / len(scores)) if scores else 0
+        summary.append([f"{user.last_name} {user.first_name}", user.grade or "—", len(scores), average])
+    for col, width in enumerate([30, 14, 22, 24], start=1):
+        summary.column_dimensions[get_column_letter(col)].width = width
+    summary.freeze_panes = "A2"
+    summary.auto_filter.ref = summary.dimensions
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    filename = _export_filename(rows, "xlsx")
+    return StreamingResponse(
+        buf,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f"attachment; filename*=UTF-8''{filename}"},
+    )
+
+
+@router.get("/export/word")
+async def export_results_word(user_id: int = None, db: AsyncSession = Depends(get_db)):
+    rows = await _get_export_rows(db, user_id)
+    if user_id is not None and not rows:
+        user_res = await db.execute(select(User).where(User.id == user_id))
+        if not user_res.scalar_one_or_none():
+            raise HTTPException(404, "Ученик не найден")
+
+    doc = Document()
+    normal = doc.styles["Normal"]
+    normal.font.name = "Arial"
+    normal.font.size = Pt(10)
+
+    title = doc.add_paragraph()
+    title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = title.add_run("MatriX — общие результаты")
+    run.bold = True
+    run.font.name = "Arial"
+    run.font.size = Pt(20)
+
+    subtitle = doc.add_paragraph()
+    subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    subtitle.add_run(f"Дата формирования: {datetime.now().strftime('%d.%m.%Y %H:%M')}")
+
+    if user_id is not None and rows:
+        user = rows[0][1]
+        doc.add_paragraph(f"Ученик: {user.last_name} {user.first_name} · Класс: {user.grade or '—'}")
+
+    scores = [int(tr.percentage or 0) for tr, _ in rows]
+    average = round(sum(scores) / len(scores)) if scores else 0
+    doc.add_paragraph(f"Всего попыток: {len(rows)} · Средний результат: {average}%")
+
+    table = doc.add_table(rows=1, cols=7)
+    table.style = "Table Grid"
+    table.alignment = 1
+    headers = ["Дата", "Ученик", "Класс", "Тест", "Верно", "Всего", "%"]
+    for cell, value in zip(table.rows[0].cells, headers):
+        cell.text = value
+        for paragraph in cell.paragraphs:
+            for r in paragraph.runs:
+                r.bold = True
+                r.font.name = "Arial"
+                r.font.size = Pt(9)
+
+    for tr, user in rows:
+        date_text = tr.timestamp.strftime("%d.%m.%Y %H:%M") if tr.timestamp else "—"
+        values = [date_text, f"{user.last_name} {user.first_name}", user.grade or "—",
+                  tr.test_title, str(tr.correct_answers), str(tr.total_questions), f"{tr.percentage}%"]
+        cells = table.add_row().cells
+        for cell, value in zip(cells, values):
+            cell.text = str(value)
+            for paragraph in cell.paragraphs:
+                for r in paragraph.runs:
+                    r.font.name = "Arial"
+                    r.font.size = Pt(8)
+
+    buf = io.BytesIO()
+    doc.save(buf)
+    buf.seek(0)
+    filename = _export_filename(rows, "docx")
+    return StreamingResponse(
+        buf,
+        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        headers={"Content-Disposition": f"attachment; filename*=UTF-8''{filename}"},
     )

@@ -3,6 +3,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
@@ -74,7 +75,17 @@ app.include_router(tests_router)
 app.include_router(custom_tests_router)
 
 FRONTEND = os.path.join(os.path.dirname(__file__), "..", "frontend")
+app.mount("/assets", StaticFiles(directory=os.path.join(FRONTEND, "assets")), name="assets")
 
 @app.get("/", include_in_schema=False)
 async def root():
     return FileResponse(os.path.join(FRONTEND, "index.html"))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "main:app",
+        host="127.0.0.1",
+        port=8000,
+        reload=True
+    )

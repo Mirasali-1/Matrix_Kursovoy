@@ -37,6 +37,13 @@ async def register_user(data: UserCreate, db: AsyncSession = Depends(get_db)):
     await db.refresh(user)
     return user
 
+@router.get("/", response_model=list[UserOut])
+async def get_all_users(db: AsyncSession = Depends(get_db)):
+    res = await db.execute(
+        select(User).order_by(User.grade, User.last_name, User.first_name)
+    )
+    return res.scalars().all()
+
 @router.get("/{user_id}", response_model=UserOut)
 async def get_user(user_id: int, db: AsyncSession = Depends(get_db)):
     res = await db.execute(select(User).where(User.id == user_id))
